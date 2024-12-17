@@ -26,8 +26,8 @@ import java.io.BufferedReader;
     private double alpha;
     private Random rand;
     //AGGIUNTE MIE
-    private list<list<MyEntry>> sl;
-    private static list<MyEntry> empty_list;
+    private List<List<MyEntry>> sl;
+    private static List<MyEntry> empty_list;
     //FINE AGGIUNTE MIE
     public SkipListPQ(double alpha) {
         this.alpha = alpha;
@@ -53,13 +53,17 @@ import java.io.BufferedReader;
         MyEntry e = new MyEntry(key, value);
         int level = generateEll(alpha, key);
         while((sl.size()-1) <= level) sl.add(empty_list);
-        while(i <= level) //3 votle uscito testa -> level = 3 -> inserita la entry in S0,S1,S2,S3
+        while(i <= level) //3 volte uscito testa -> level = 3 -> inserita la entry in S0,S1,S2,S3
         {
-            int j = 0;
-            while(key >= sl.get(i).get(j).getKey()) j++;
+            int j = 1;
+            while(key >= sl.get(i).get(j).getKey())
+            {
+                 j++;
+            }
             sl.get(i).add(j, e);
             i++;
         }
+        return 0;
  // TO BE COMPLETED (finito?)
     }
     private int generateEll(double alpha_ , int key) {
@@ -96,10 +100,14 @@ import java.io.BufferedReader;
         {   
             MyEntry e = sl.get(0).get(i);
             int j = 1;
-            while(sl.get(j).contains(e)) j++;
-            System.out.print("("+ e + "):S"+ j-1 + ", ");
+            while((j < sl.size()) && sl.get(j).contains(e))
+            {
+                j++;
+            } 
+            System.out.print(e + " "+ (j-1) + ", ");
+            i++;
         }
-        System.out.println("");
+        System.out.println("\b\b");
  // TO BE COMPLETED (finito?)
     }
  }
