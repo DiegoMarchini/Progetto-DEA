@@ -27,11 +27,15 @@ import java.io.BufferedReader;
     private Random rand;
     //AGGIUNTE MIE
     private list<list<MyEntry>> sl;
-    private static list<MyEntry> empty_list = {MyEntry(-100000,""),MyEntry(100000,"")};
+    private static list<MyEntry> empty_list;
     //FINE AGGIUNTE MIE
     public SkipListPQ(double alpha) {
         this.alpha = alpha;
         this.rand = new Random();
+        this.sl = new ArrayList<>();
+        this.empty_list = new ArrayList<>();
+        empty_list.add(new MyEntry(Integer.MIN_VALUE,"-inf"));
+        empty_list.add(new MyEntry(Integer.MAX_VALUE,"+inf"));
         sl.add(empty_list);
  // TO BE COMPLETED       
     }
@@ -52,7 +56,7 @@ import java.io.BufferedReader;
         while(i <= level) //3 votle uscito testa -> level = 3 -> inserita la entry in S0,S1,S2,S3
         {
             int j = 0;
-            while(key >= sl.get(i).get(j).getValue()) j++;
+            while(key >= sl.get(i).get(j).getKey()) j++;
             sl.(i).add(j, e);
             i++;
         }
@@ -117,15 +121,22 @@ import java.io.BufferedReader;
                 int operation = Integer.parseInt(line[0]);
                 switch (operation) {
                     case 0:
- // TO BE COMPLETED 
+                        MyEntry min_entry = skipList.min();
+                        if(min_entry != null) System.out.println(min_entry);
+ // TO BE COMPLETED (finito?)
                         break;
                     case 1:
- // TO BE COMPLETED 
+                        skipList.removeMin();
+ // TO BE COMPLETED (finito?)
                         break;
                     case 2:
- // TO BE COMPLETED 
+                        int key = Integer.parseInt(line[1]);
+                        String value = line[2];
+                        skipList.insert(key, value);
+ // TO BE COMPLETED (finito?)
                         break;
                     case 3:
+                        skipList.print();
  // TO BE COMPLETED 
                         break;
                     default:
