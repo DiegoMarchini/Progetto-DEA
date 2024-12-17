@@ -57,7 +57,7 @@ import java.io.BufferedReader;
         {
             int j = 0;
             while(key >= sl.get(i).get(j).getKey()) j++;
-            sl.(i).add(j, e);
+            sl.get(i).add(j, e);
             i++;
         }
  // TO BE COMPLETED (finito?)
