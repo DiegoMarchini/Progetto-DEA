@@ -27,13 +27,13 @@ import java.io.BufferedReader;
     private Random rand;
     //AGGIUNTE MIE
     private List<List<MyEntry>> sl;
-    private static List<MyEntry> empty_list;
+    //private static List<MyEntry> empty_list;
     //FINE AGGIUNTE MIE
     public SkipListPQ(double alpha) {
         this.alpha = alpha;
         this.rand = new Random();
-        this.sl = new ArrayList<>();
-        this.empty_list = new ArrayList<>();
+        this.sl = new ArrayList<>();//col fatto ch è un array che implementa una lista potrebbe dare problemi nell'insert
+        List<MyEntry> empty_list = new ArrayList<MyEntry>();
         empty_list.add(new MyEntry(Integer.MIN_VALUE,"-inf"));
         empty_list.add(new MyEntry(Integer.MAX_VALUE,"+inf"));
         sl.add(empty_list);
@@ -54,7 +54,10 @@ import java.io.BufferedReader;
         int level = generateEll(alpha, key);
         while((sl.size()-1) <= level)
         { 
-            sl.add(empty_list);
+            List<MyEntry> last_level = new ArrayList<>();
+            last_level.add(new MyEntry(Integer.MIN_VALUE,"-inf"));
+            last_level.add(new MyEntry(Integer.MAX_VALUE,"+inf"));
+            sl.add(last_level);
         }
         while(i <= level) //3 volte uscito testa -> level = 3 -> inserita la entry in S0,S1,S2,S3
         {
@@ -64,6 +67,7 @@ import java.io.BufferedReader;
                  j++;
             }
             sl.get(i).add(j, e);
+            //System.out.println("added "+ value + " S"+i);
             i++;
         }
         return 0;
@@ -108,7 +112,7 @@ import java.io.BufferedReader;
             {
                 j++;
             } 
-            s+=(e + " "+ (j-1) + ", ");
+            s+=(e + " "+ j + ", ");
             i++;
         }
         s = s.substring(0,s.length()-2);
