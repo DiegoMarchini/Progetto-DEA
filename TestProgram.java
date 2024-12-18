@@ -98,6 +98,9 @@ import java.io.BufferedReader;
             i++;
             check = sl.get(i).remove(e);  
         } 
+        //parte di pulizia
+        while (sl.size() > 1 && sl.get(sl.size() - 2).size() == 2) sl.remove(sl.size() - 1);
+        //fine pulizia
         return e;
  // TO BE COMPLETED (finito?)
     }
