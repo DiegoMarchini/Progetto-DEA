@@ -96,6 +96,7 @@ import java.io.BufferedReader;
     }
     public void print() {
         int i = 1;
+        String s = "";
         while(i < sl.get(0).size()-1)
         {   
             MyEntry e = sl.get(0).get(i);
@@ -104,10 +105,12 @@ import java.io.BufferedReader;
             {
                 j++;
             } 
-            System.out.print(e + " "+ (j-1) + ", ");
+            s+=(e + " "+ (j-1) + ", ");
             i++;
         }
-        System.out.println("\b\b");
+        s = s.substring(0,s.length()-2);
+        //System.out.println(sl.get(0).size()-2); -> trovato è un problema di inserimento, guarda in insert
+        System.out.println(s);
  // TO BE COMPLETED (finito?)
     }
  }
