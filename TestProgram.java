@@ -52,7 +52,10 @@ import java.io.BufferedReader;
         int i = 0;
         MyEntry e = new MyEntry(key, value);
         int level = generateEll(alpha, key);
-        while((sl.size()-1) <= level) sl.add(empty_list);
+        while((sl.size()-1) <= level)
+        { 
+            sl.add(empty_list);
+        }
         while(i <= level) //3 volte uscito testa -> level = 3 -> inserita la entry in S0,S1,S2,S3
         {
             int j = 1;
